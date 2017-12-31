@@ -1,0 +1,173 @@
+  <!--BOF 4Box-->
+<section>
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="white-box set-height p-0">
+        <div class="row">
+          <div class="col-xl-10 col-lg-9 col-md-12 col-sm-12">
+            <div class="profile-box">
+              <form [formGroup]="formPersonalDetails" (ngSubmit)="submitPersonalDertails(formPersonalDetails.value, formPersonalDetails.valid)"
+                    novalidate>
+                <div class="head">
+                  <h3>Personal Details</h3>
+                  <a class="edit-link" href="javascript:void(0)" *ngIf="!isEditPersonalDetails" (click)="isEditPersonalDetails = true"><i class="fa fa-edit"></i>Edit</a>
+                  <input type="submit" class="update-link" value="Update" *ngIf="isEditPersonalDetails">
+                  <!--<a class="edit-link" href="javascript:void(0)" *ngIf="isEditPersonalDetails" (click)="document.getElementById('formPersonalDetails').submit();"><i class="fa fa-edit"></i>Update</a>-->
+                  <a class="edit-link" href="javascript:void(0)" *ngIf="isEditPersonalDetails" (click)="cancelPersonalDetails()"><i class="fa fa-edit"></i>Cancel</a>
+                  <span></span>
+                </div>
+                <div class="body-box">
+
+                  <div class="personal-details">
+                    <div class="profile-avatar"><img src="assets/images/user.svg" alt=""></div>
+                    <div class="profile-right">
+                      <ul class="list-details">
+                        <li class="one-col">
+                          <label>Designation: </label>
+                          <span>{{ formPersonalDetails.get('Designation').value }}</span>
+                          <!--<input type="text" *ngIf="formPDSubmitAttempt" name="" formControlName="Designation"/>-->
+                        </li>
+                        <li class="one-col">
+                          <label>Department: </label>
+                          <span>{{ formPersonalDetails.get('Department').value }}</span>
+                          <!--<input type="text" *ngIf="formPDSubmitAttempt" name="" formControlName="Department"/>-->
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="profile-mid">
+                      <ul class="list-details">
+                        <!--<li class="three-col">
+                          <label>User Name: </label>
+                          <span>{{ formPersonalDetails.get('UserName').value }}</span>
+                        </li>-->
+                        <li class="three-col" formArrayName="UserDetails">
+                          <label>First Name: </label>
+                          <span *ngIf="!isEditPersonalDetails">{{ formPersonalDetails.get('UserDetails.FirstName').value }}</span>
+                          <input type="text" *ngIf="isEditPersonalDetails" name="FirstName" formControlName="FirstName" />
+                          <br />
+                          <!--<div class="form-control-feedback has-danger"
+                               *ngIf="!formPersonalDetails.controls.UserDetails.controls.FirstName.Valid">
+                            Please enter First Name.
+                          </div>-->
+                          <div class="form-control-feedback has-danger"
+                               *ngIf="(isEditPersonalDetails && ((formPersonalDetails.controls.UserDetails.controls.FirstName?.invalid
+                            && formPersonalDetails.controls.UserDetails.controls.FirstName?.touched
+                            && formPersonalDetails.controls.UserDetails.controls.FirstName?.dirty) ||
+                           (formPersonalDetails.controls.UserDetails.controls.FirstName?.untouched
+                            && formPDSubmitAttempt)))">
+                            Please enter First Name.
+                          </div>
+                        </li>
+					  	<li class="three-col" formArrayName="UserDetails">
+					  		<label>Middle Name: </label>
+					  		<span *ngIf="!isEditPersonalDetails">{{ formPersonalDetails.get('UserDetails.MiddleName').value }}</span>
+					  		<input type="text" *ngIf="isEditPersonalDetails" name="MiddleName" formControlName="MiddleName" />
+					  		<br />
+					  		<div class="form-control-feedback has-danger"
+						 *ngIf="(isEditPersonalDetails && ((formPersonalDetails.controls.UserDetails.controls.MiddleName?.invalid
+                            && formPersonalDetails.controls.UserDetails.controls.MiddleName?.touched
+                            && formPersonalDetails.controls.UserDetails.controls.MiddleName?.dirty) ||
+                           (formPersonalDetails.controls.UserDetails.controls.MiddleName?.untouched
+                            && formPDSubmitAttempt)))">
+					  			Please enter Middle Name.
+					  		</div>
+					  	</li>
+                        <li class="three-col" formArrayName="UserDetails">
+                          <label>Last Name: </label>
+                          <span *ngIf="!isEditPersonalDetails">{{ formPersonalDetails.get('UserDetails.LastName').value }}</span>
+                          <input type="text" *ngIf="isEditPersonalDetails" name="LastName" formControlName="LastName" />
+                          <!--<div class="form-control-feedback has-danger"
+                               *ngIf="((formPersonalDetails.controls.LastName?.inValid
+                            && formChangePassword.controls.LastName?.touched
+                            && formChangePassword.controls.LastName?.dirty) ||
+                           (formChangePassword.controls.LastName?.untouched
+                            && formPDSubmitAttempt))">
+                            Please enter Last Name.
+                          </div>-->
+                        </li>
+                        <li class="two-col">
+                          <label>Email: </label>
+                          <span>{{ formPersonalDetails.get('Email').value }}</span>
+                        </li>
+                        <li class="two-col">
+                          <label>Phone Number: </label>
+                          <span>{{ formPersonalDetails.get('PhoneNumber').value }}</span>
+                          <!--<input type="text" *ngIf="formPDSubmitAttempt" name="" formControlName="PhoneNumber" />-->
+                        </li>
+
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+
+            <div class="profile-box">
+              <div class="head">
+                <h3>Notification Settings</h3>
+                <a class="edit-link" href="javascript:void(0)"><i class="fa fa-edit"></i>Edit</a>
+                <span></span>
+              </div>
+              <div class="body-box">
+                <div class="pro-notifi-box">
+                  <label class="title">Notification Active</label>
+                  <div class="swich-onoff">
+                    <button type="button" class="btn btn-sm btn-toggle active" data-toggle="button" aria-pressed="true" autocomplete="off">
+                      <div class="handle"></div>
+                    </button>
+                  </div>
+                  <ul class="list-checkbox">
+                    <li>
+                      <div class="check-box">
+                        <input type="checkbox" class="css-checkbox" id="push" checked="checked">
+                        <label for="push" name="checkbox1_lbl" class="css-label lite-green-check">Push</label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="check-box">
+                        <input type="checkbox" class="css-checkbox" id="email">
+                        <label for="email" name="checkbox1_lbl" class="css-label lite-green-check">Email</label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="check-box">
+                        <input type="checkbox" class="css-checkbox" id="sms">
+                        <label for="sms" name="checkbox1_lbl" class="css-label lite-green-check">SMS</label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-box">
+              <div class="head">
+                <h3>Password Settings</h3>
+                <span></span>
+              </div>
+              <div class="body-box">
+                <div class="password-box">
+                  <ul class="list-change-pw">
+                    <li><label>Current Password: </label><span>......</span></li>
+                    <li><a class="btn btn-sm btn-blue ml-5" (click)='changePassword()'>Change Password</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+            <div class="access-qr-card">
+              <h3>Mobile<br>Access Card</h3>
+              <div><img src="assets/images/qr-code.png" class="img-fluid" alt=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--EOF 4Box-->
+</section>
+
+

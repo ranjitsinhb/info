@@ -1,0 +1,152 @@
+<div class="modal fade bd-example-modal-lg show" id="CreateUser" tabindex="-1" role="dialog" style="display: block; padding-left: 17px;">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content" style="margin-top: 0px;">
+			<div class="modal-header">
+
+
+				<h5 class="modal-title">{{title}}</h5>
+				<button type="button" class="dismiss" (click)="CloseModel();" data-dismiss="modal">
+					<img src="../assets/images/close-icon.png" alt="Dismiss Modal">
+				</button>
+				<!--<span class="gray-text">Click on spots to select/deselect</span>-->
+			</div>
+			<div class="modal-body p-0">
+				<form [formGroup]="userForm" (ngSubmit)="confirm()" novalidate>
+					<div class="created-user-form">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="form-field">
+									<label>First Name</label>
+									<div class="input-field">
+										<input type="text" maxlength="50" class="form-control" formControlName="FirstName" placeholder="First Name">
+									</div>
+									<div class="form-control-feedback has-danger" *ngIf="((userForm.controls.FirstName?.inValid
+                            && userForm.controls.FirstName?.touched
+                            && userForm.controls.FirstName?.dirty)) ||
+                           (userForm.controls.FirstName?.untouched
+                            && formSubmitAttempt)">
+										Please enter first name.
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-field">
+									<label>Middle Name</label>
+									<div class="input-field">
+										<input type="text" class="form-control" maxlength="50" formControlName="MiddleName" placeholder="Middle Name">
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-field">
+									<label>Last Name</label>
+									<div class="input-field">
+										<input type="text" class="form-control" maxlength="50" formControlName="LastName" placeholder="Last Name">
+									</div>
+									<div class="form-control-feedback has-danger" *ngIf="((userForm.controls.LastName?.inValid
+                            && userForm.controls.LastName?.touched
+                            && userForm.controls.LastName?.dirty)) ||
+                           (userForm.controls.LastName?.untouched
+                            && formSubmitAttempt)">
+										Please enter last name.
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-8">
+								<div class="form-field">
+									<label>Email</label>
+									<div class="input-field">
+										<input type="text" class="form-control" [ngClass]="{ 'has-danger': (userForm.controls.EmailAddress?.invalid && (userForm.controls.EmailAddress?.dirty
+                           || userForm.controls.EmailAddress?.touched)) || (userForm.controls.EmailAddress?.untouched && formSubmitAttempt) }" formControlName="EmailAddress" placeholder="Email">
+										<div class="form-control-feedback has-danger" *ngIf="(userForm.controls.EmailAddress?.invalid && (userForm.controls.EmailAddress?.touched
+                         && !userForm.controls.EmailAddress?.dirty)) || (userForm.controls.EmailAddress?.untouched && formSubmitAttempt)">
+											Please enter email address
+										</div>
+										<div class="form-control-feedback has-danger" *ngIf="(userForm.controls.EmailAddress?.invalid && userForm.controls.EmailAddress?.dirty)">
+											Please enter valid email address
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-field">
+									<label>Designation</label>
+									<div class="input-field">
+										<input type="text" placeholder="Designation">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-8">
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-field" *ngIf='(userId == null)'>
+											<label>Tenant</label>
+											<div class="select-field">
+												<select formControlName="TenantId" class="form-control" >
+													<option *ngFor="let tenant of tenantList" value="{{tenant.tenantId}}" [ngValue]="tenant">{{tenant.tenantName}}</option>
+												</select>
+											</div>
+
+											<div class="form-control-feedback has-danger" *ngIf="(userForm.value.TenantId==null)
+												 && ((userForm.hasError('isTenantUser')) || (userForm.controls.TenantId?.untouched && formSubmitAttempt))">
+												Please select tenant.
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="form-field">
+											<label>Phone</label>
+											<div class="input-field">
+												<input type="text" formControllerName="PhoneNumber" class="form-control" placeholder="Phone">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-field">
+									<div class="upload-pic">
+										<img src="../assets/images/user-acvtar.png">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-field">
+									<div class="checkbox-access">
+										<span>Access Role</span>
+										<ul class="list-of-access-role row">
+											<li class="col-sm-4 p-0" *ngFor="let userType of userTypes">
+												<div class="redio-box">
+													<input type="radio" value="{{userType.userTypeId}}" [checked]="userForm.controls['UserTypeId'].value === userType.userTypeId" formControlName="UserTypeId" id="user_type_{{userType.userTypeId}}" class="css-checkbox" />
+													<label for="user_type_{{userType.userTypeId}}" class="css-label radGroup2">{{userType.userType}}</label>
+												</div>
+
+											</li>
+
+										</ul>
+										<input type="radio" />
+									</div>
+									<div class="form-control-feedback has-danger" *ngIf="(userForm.controls['UserTypeId'].value==null && formSubmitAttempt)">
+										Please select access role.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-blue" (click)="clearform();">Clear</button>
+				<!--<input type="submit" class="btn btn-blue " value="Submit" />-->
+				<button type="button" class="btn btn-blue " (click)="confirm();">Submit</button>
+			</div>
+		</div>
+	</div>
+	<!--EOF Create User-->
+</div>

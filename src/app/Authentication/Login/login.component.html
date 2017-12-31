@@ -1,0 +1,115 @@
+<section id="hef-login-wrap">
+  <div class="d-flex align-items-stretch bd-highlight" style="height: 100%">
+    <div class="col-0 col-md-4 col-lg-6 d-none d-sm-block" style="background-image:url(../../../assets/images/login-bg.jpg);background-repeat:no-repeat;background-position:center;background-size:cover"></div>
+    <div class="col-11 col-md-8 col-lg-6">
+      <div class="d-flex align-items-stretch" style="height: 100%;width:100%;">
+        <div class="align-self-center col-md-10 col-lg-7 offset-md-1 offset-lg-2 mobile-scroll" style="margin:0 auto;">
+          <div class="login-form-wrap">
+            <div class="justify-content-center">
+              <h1>
+                <span>Welcome to</span>
+                <img src="../../../assets/images/logo-151.svg" alt="ESD">
+              </h1>
+              <h2>
+                Facility Manager
+                <span>Please sign in to your account</span>
+              </h2>
+            </div>
+            <section class="login-form" [hidden]="isVisibleCHForm">
+              <div *ngIf="error == 'A0x002'" class="alert alert-danger">
+                Invalid email address or password.
+              </div>
+              <form [formGroup]="frmLogin" (ngSubmit)="login()" novalidate>
+                <div class="form-group" [ngClass]="{ 'has-danger': (frmLogin.controls.EmailAddress?.invalid
+                                        && (frmLogin.controls.EmailAddress?.dirty || frmLogin.controls.EmailAddress?.touched))
+                                          || (frmLogin.controls.EmailAddress?.untouched && formSubmitAttempt)}">
+                  <label>Email address</label>
+                  <div class="input-field">
+                    <input type="text" class="form-control" placeholder="Email address" name="EmailAddress" formControlName="EmailAddress">
+                    <div class="form-control-feedback has-danger"
+                         *ngIf="(frmLogin.controls.EmailAddress?.invalid
+                          && (frmLogin.controls.EmailAddress?.touched && !frmLogin.controls.EmailAddress?.dirty))
+                         || (frmLogin.controls.EmailAddress?.untouched && formSubmitAttempt)">
+                      Please enter email address
+                    </div>
+                    <div class="form-control-feedback has-danger" *ngIf="(frmLogin.controls.EmailAddress?.invalid && frmLogin.controls.EmailAddress?.dirty)">
+                      Please enter valid email address
+                    </div>
+                  </div>
+                </div>
+                <div class="field-row login-password-padb-20"
+                     [ngClass]="{ 'has-danger': (frmLogin.controls.EmailAddress?.invalid
+                      && (frmLogin.controls.Password?.dirty || frmLogin.controls.Password?.touched))
+                      || (frmLogin.controls.Password?.untouched && formSubmitAttempt) }">
+                  <label>Password</label>
+                  <div class="input-field">
+                    <a class="forgot-link" (click)='showConfirm()'>Forgot?</a>
+                    <input type="password" class="form-control mb-0" placeholder="Password" name="Password" formControlName="Password">
+                    <div class="form-control-feedback has-danger"
+                         *ngIf="(frmLogin.controls.Password?.invalid && (frmLogin.controls.Password?.dirty
+                         || frmLogin.controls.Password?.touched)) || (frmLogin.controls.Password?.untouched && formSubmitAttempt)">
+                      Please enter password
+                    </div>
+                  </div>
+                </div>
+                <!--<div class="pwstrength_viewport_progress"></div>-->
+                <div class="check-box">
+                  <input type="checkbox" class="css-checkbox" id="checkbox1" checked="checked" name="RememberMe" formControlName="RememberMe" />
+                  <label for="checkbox1" name="checkbox1_lbl" class="css-label lite-green-check">Remember Me</label>
+                </div>
+                <div class="form-action">
+                  <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="submit" [disabled]="frmLogin.invalid && formSubmitAttempt">Login</button>
+                </div>
+                <div class="compny-text-jbc">
+                  <img src="assets/images/logo-jbc.svg" alt="The John Buck Company">
+                  <span>The John Buck Company</span>
+                </div>
+              </form>
+            </section>
+            <section class="login-form" [hidden]="!isVisibleCHForm">
+       
+              <form [formGroup]="formChangePassword" (ngSubmit)="changePassword()" novalidate>
+                <div class="field-row login-password-padb-20">
+                  <label>New Password</label>
+                  <div class="input-field">
+                    <input type="hidden" class="form-control mb-0" 
+                            name="OldPassword"  formControlName="OldPassword" >
+                    <input type="password" class="form-control mb-0" placeholder="New Password"
+                           name="NewPassword" formControlName="NewPassword">
+                    <div class="form-control-feedback has-danger"
+                         *ngIf="((formChangePassword.controls.NewPassword?.inValid ||
+                              (formChangePassword.controls.NewPassword?.hasError('pattern') && !formChangePassword.controls.NewPassword?.errors))
+                            && formChangePassword.controls.NewPassword?.touched
+                            && formChangePassword.controls.NewPassword?.dirty) ||
+                           (formChangePassword.controls.NewPassword?.untouched
+                            && formCPSubmitAttempt)">
+                        Please enter password
+                      </div>
+
+                    <div *ngIf="formChangePassword.controls.NewPassword?.errors && formCPSubmitAttempt != null && !formCPSubmitAttempt" [ngClass]="'error'">
+                      <div *ngIf="formChangePassword.controls.NewPassword?.errors.minlength">
+                        Password must be at least 8 characters long.
+                      </div>
+                      <div *ngIf="formChangePassword.controls.NewPassword?.errors.maxlength">
+                        Password can be max 15 characters long.
+                      </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="form-action">
+                  <button class="btn btn-lg btn-primary btn-block" name="ChangePassword"
+                          value="Change Password" type="submit"
+                          [disabled]="formChangePassword.invalid && formCPSubmitAttempt">Change Password</button>
+                </div>
+                <div class="compny-text-jbc">
+                  <img src="assets/images/logo-jbc.svg" alt="The John Buck Company">
+                  <span>The John Buck Company</span>
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

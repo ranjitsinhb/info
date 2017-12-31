@@ -1,0 +1,230 @@
+<div class="modal fade bd-example-modal-lg show" id="CreateUser" tabindex="-1" role="dialog" style="display: block; padding-left: 17px;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="margin-top: 0px;">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Building</h5>
+                <button type="button" class="dismiss" data-dismiss="modal" (click)="CloseModel();">
+          <img src="../assets/images/close-icon.png" alt="Dismiss Modal">
+        </button>
+                <!--<span class="gray-text">Click on spots to select/deselect</span>-->
+            </div>
+            <div class="modal-body p-0">
+                <form #createBuildingForm="ngForm">
+
+                    <div class="add-building-info">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-field">
+                                            <label>Building Name</label>
+                                            <div class="input-field">
+                                                <input type="text" #buildingName="ngModel" name="buildingName" [(ngModel)]="BuildingModel.buildingName" placeholder="Hexa" required />
+                                                <div [hidden]="buildingName.valid || (buildingName.pristine && !BuildingModel.submitted)" class="has-error" role="alert">
+                                                    <span class="help-block has-error">Building name required.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-field">
+                                            <label>Building Code</label>
+                                            <div class="input-field">
+                                                <input type="text" #buildingCode="ngModel" name="buildingCode" [(ngModel)]="BuildingModel.buildingCode" placeholder="Commercial" required />
+                                                <div [hidden]="buildingCode.valid || (buildingCode.pristine && !BuildingModel.submitted)" class="has-error" role="alert">
+                                                    <span class="help-block has-error">Building code required.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- <div class="col-sm-6">
+                            <div class="form-field">
+                              <label>No. of Floors</label>
+                              <div class="input-field">
+                                <input type="text" placeholder="35">
+                              </div>
+                            </div>
+                          </div> -->
+                                    <div class="col-sm-6">
+                                        <div class="form-field">
+                                            <label>Portfolio</label>
+                                            <div class="select-field">
+                                                <select class="form-control" #portfolioId="ngModel" [(ngModel)]="BuildingModel.portfolioId" name="portfolioId" required>
+                          <option value="">Portfolio</option>
+                          <option *ngFor="let pl of portfolioList.data" [value]="pl.portfolioId">{{pl.portfolioName}}</option>
+                        </select>
+                                                <div [hidden]="portfolioId.valid || (portfolioId.pristine && !BuildingModel.submitted)" class="has-error" role="alert">
+                                                    <span class="help-block has-error">Portfolio required.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-field">
+                              <label>Address</label>
+                              <div class="input-field">
+                                <input type="text" placeholder="Address">
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-field">
+                                    <label>Description</label>
+                                    <div class="textarea-field">
+                                        <textarea #description="ngModel" name="description" [(ngModel)]="BuildingModel.description" placeholder="Description" style="height:170px;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-building">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-field">
+                                            <label>Features</label>
+                                            <div class="input-tag-field">
+                                                <!-- <a class="add-btn" href="javascript:void(0)">
+                          <img src="../assets/images/add-tag-icon.svg" alt="">
+                        </a> -->
+                                                <div style="z-index: 2000;">
+
+                                                    <!-- <tag-input name="buildingFeatures" [(ngModel)]="BuildingModel.buildingFeatures" [placeholder]="'+ Enter new feature'" [secondaryPlaceholder]="'Enter features'" (onAdd)="onFeatureAdded($event)" (onRemove)="onFeatureRemoved($event)">
+                                                        <tag-input-dropdown [autocompleteItems]="featuresAutoSuggestArray" [appendToBody]="false">
+                                                        </tag-input-dropdown>
+                                                    </tag-input> -->
+                                                    <tag-input theme='bootstrap' name="buildingFeatures" [ngModel]="BuildingModel.buildingFeatures" [placeholder]="'+ Enter new feature'" [secondaryPlaceholder]="'Enter features'" [onTextChangeDebounce]="500" [onlyFromAutocomplete]="false">
+                                                        <tag-input-dropdown [autocompleteObservable]="requestAutocompleteFeatures" [appendToBody]='appendToBody'>
+                                                            <ng-template let-item="item" let-index="index">
+                                                                {{ item.display }}
+                                                            </ng-template>
+                                                        </tag-input-dropdown>
+                                                    </tag-input>
+
+                                                </div>
+
+                                                <!-- <input type="text" placeholder="Hexa"> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <!-- <ul class="list-of-tags">
+                        <li><span>Rooftop Sky Garden</span><a href="javascript:void(0)"><img src="../assets/images/add-tag-icon.svg" width="12" alt=""></a></li>
+                          <li><span>Second Floor Terrace</span><a href="javascript:void(0)"><img src="../assets/images/add-tag-icon.svg" width="12" alt=""></a></li>
+                          <li><span>Conference Center</span><a href="javascript:void(0)"><img src="../assets/images/add-tag-icon.svg" width="12" alt=""></a></li>
+                      </ul> -->
+                                        <!-- <ul class="list-of-tags">
+                                            <li *ngFor="let bf of BuildingModel.buildingFeatures">
+                                                <span>{{bf.display}}</span>
+                                                <a href="javascript:void(0)">
+                                                    <img src="../assets/images/add-tag-icon.svg" width="12" alt="">
+                                                </a>
+                                            </li>
+                                        </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="features-building">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <div class="form-field">
+                              <label>List of leasing contacts</label>
+                              <div class="input-tag-email-field">
+                                <a class="add-btn" href="javascript:void(0)"><img src="../assets/images/add-tag-icon.svg" alt=""></a>
+                                <a class="email-btn" href="javascript:void(0)"><img src="../assets/images/email-icon.svg" alt=""></a>
+                                <input type="text" placeholder="jason.houze@ngkf.com">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div class="features-building">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-field">
+                              <label>Company Name</label>
+                              <div class="input-field">
+                                <input type="text" placeholder="Company Name">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-field">
+                              <label>Phone</label>
+                              <div class="input-field">
+                                <input type="text" placeholder="353-562-3654">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-field">
+                              <label>Email</label>
+                              <div class="input-field">
+                                <input type="text" placeholder="Email">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div class="features-building">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <h3 class="head mt-4">Wifi credentials</h3>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-field">
+                              <label>Username</label>
+                              <div class="input-field">
+                                <input type="text" placeholder="Username">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-field">
+                              <label>Password</label>
+                              <div class="input-field">
+                                <input type="text" placeholder="Password">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="clearform();" class="btn btn-blue">Clear</button>
+                <button [disabled]="isSubmitted" (click)="onSubmit(BuildingModel)" class="btn btn-blue">Submit</button>
+            </div>
+        </div>
+    </div>
+    <!--EOF Create User-->
+</div>

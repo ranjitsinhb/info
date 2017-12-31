@@ -1,0 +1,14 @@
+.update-link {
+  background: none;
+  border: none;
+  /* color: #0066ff;
+  text-decoration: underline;*/
+  cursor: pointer;
+  float: right;
+  font-size: 14px;
+  font-weight: 500;
+  color: #455fa9;
+  text-decoration: none;
+  padding-left: 10px;
+  padding-top: 2px;
+}

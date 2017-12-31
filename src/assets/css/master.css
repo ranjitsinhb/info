@@ -1,0 +1,128 @@
+@charset "utf-8";
+/* CSS Document */
+/* #Reset & Basics
+================================================== */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {	margin: 0;	padding: 0;	border: 0;	font-size: 100%; vertical-align: baseline;}
+
+table, tbody, tfoot, thead, tr, th, td{	margin: 0;	padding: 0;	border: 0;	font-size: 100%; font:inherit;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+body{line-height: 1;}
+ol, ul{list-style: none;}
+table{border-collapse:collapse;border-spacing:0;}
+.radio, .checkbox{margin-top:inherit;}
+/* #Pen-specific styles
+================================================== */
+/*  */
+body{font-family: 'Roboto', sans-serif;}
+html, body{height:100%;}
+.inner-body{background-color:#f2f2f2;}
+header{background-color:#fff;min-height:74px;}
+/* #Typography
+================================================== */
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {font-weight: inherit; }
+h2{font:normal 43px 'Helvetica LT Std';color:#000000;}
+p {line-height:1;}
+p img {margin: 0;}
+/* #Links
+================================================== */
+a, a:visited {color:#937D00;text-decoration:underline;outline: 0;-webkit-transition: all 0.2s;-moz-transition: all 0.2s;-o-transition: all 0.2s;transition: all 0.2s;}
+a:hover, a:focus {color: #000; text-decoration: none;outline: 0;-webkit-transition: all 0.2s;-moz-transition: all 0.2s;-o-transition: all 0.2s;transition: all 0.2s;}
+p a, p a:visited {	line-height: inherit;outline: 0;}
+.uppercase{text-transform:uppercase;}
+/* #Clearing
+================================================== */
+.clearfix:before, .clearfix:after{content: '\0020';	display: block;	overflow: hidden; visibility: hidden; width: 0;	height: 0;}
+.clearfix:after {clear: both;}
+.clearfix {zoom: 1;}
+.ie7 .clearfix {clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0;}
+.clear {clear: both; display: block; overflow: hidden; visibility: hidden;	width: 0; height: 0;}
+
+
+
+/* #BOF Login Pages
+================================================== */
+#hef-login-wrap{background-color:#fff;position:relative;min-height:100%;height:100%;}
+.login-form-wrap{}
+.login-form-wrap h1{display:block;text-align:center;width:100%;padding-bottom:85px;}
+.login-form-wrap h1 span{display:block;font-size:40px;color:#b6b4b4;font-weight:300;margin-bottom:25px;}
+.login-form-wrap h2{font-weight:300;font-size:40px;text-align:center;display:block;text-align:center;width:100%;padding-bottom:45px;color:#455fa9;}
+.login-form-wrap h2 span{display:block;font-weight:400;font-size:18px;padding-top:10px;color:#665b5a;}
+.login-form .field-row{margin-bottom:10px;}
+.login-form .field-row label{color:#b6b4b4;font-size:14px;margin-bottom:5px;display:block;}
+.login-form .field-row .input-field{position:relative;}
+.login-form .field-row .input-field a.forgot-link{position:absolute;top:17px;right:10px;font-size:14px;color:#455fa9;font-weight:500;}
+
+.login-form .field-row .input-field input{margin-bottom:15px;background:none;border-color:#bbbaba;border-style:solid;border-width:1px;border-radius:4px;font-size:15px;color:#3c4c5a;padding:12px 10px;}
+.login-form .field-row .input-field input:focus{background:none;border-color:#869ed6;color:#3c4c5a;}
+
+.login-form .field-row .input-field input::-webkit-input-placeholder {color:#3c4c5a;}
+.login-form .field-row .input-field input::-moz-placeholder {color: #3c4c5a;}
+.login-form .field-row .input-field input:-ms-input-placeholder {color: #3c4c5a;}
+.login-form .field-row .input-field input:-moz-placeholder {color: #3c4c5a;}
+
+
+.login-form .form-action{padding-top:15px;}
+/*.login-form .form-action .btn-primary{
+	color:#fff;border-radius:4px;box-shadow:none;outline:0;cursor:pointer;font-weight:700;font-size:20px;
+	border-color:#869ed6;border-style:solid;border-width:1px;background-color:#869ed6;text-transform:uppercase;
+}
+.login-form .form-action .btn-primary:hover{
+	background-color:#3c4c5a;color:#fff;
+}*/
+.login-form .fp-link{font-weight:400;font-size:18px;font-style:italic;}
+.login-form .fp-link:hover{color:#fff;}
+ul.error-list{padding:0 0 15px 0;}
+.right-drop {left:auto;right:0;float:right; }
+.mobile-drop ul li > a:hover, .mobile-drop ul li > a:focus { color:#0894CB;}
+.keep-open .right-drop {left:auto;right:0;float:right; background: #3d4c5a none repeat scroll 0 0; width:267px;}
+.keep-open .right-drop .panel-heading .panel-title a { color:#cacaca; font-size:14px; font-weight:normal;}
+.keep-open .right-drop .panel-heading .panel-title a i { width:17px; margin-right:9px;}
+.keep-open .right-drop .panel-heading .panel-title a b { margin-left:5px;}
+.keep-open .right-drop .panel .panel-collapse ul li { float:none;   padding-left: 35px;}
+.keep-open .right-drop .panel .panel-collapse ul li a { color:#cacaca; font-size:14px; font-weight:normal;}
+.keep-open .right-drop .panel .panel-collapse ul li a i { width:22px; margin-right:10px; }
+.compny-text-jbc{color:#821e47;font-size:20px;text-transform:uppercase;line-height:44px;margin:0 auto;overflow:hidden;width:fit-content;padding:10%;}
+.compny-text-jbc span{display:inline-block;line-height:44px;float:left;}
+.compny-text-jbc img{float:left;margin-right:15px;}
+/* #EOF Login Pages
+================================================== */
+/* #BOF CheckBox
+================================================== */
+.check-box input[type=checkbox].css-checkbox{position:absolute;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0;}
+.check-box input[type=checkbox].css-checkbox + label.css-label{
+	padding-left:30px;height:22px;display:inline-block;line-height:22px;background-repeat:no-repeat;background-position: 0 0;font-size:15px;vertical-align:middle;cursor:pointer;
+}
+.check-box input[type=checkbox].css-checkbox:checked + label.css-label{
+	background-image:url(../images/checkbox-checked.svg);
+	/*background-position: 0 -15px;*/
+}
+.lite-green-check{background-image:url(../images/checkbox.svg);}
+.check-box input[type=checkbox].css-checkbox.med + label.css-label.med{
+	padding-left:22px;height:17px;display:inline-block;line-height:17px;background-repeat:no-repeat;background-position: 0 0;font-size:15px;vertical-align:middle;cursor:pointer;
+}
+.check-box input[type=checkbox].css-checkbox.med:checked + label.css-label.med {
+	background-image:url(../images/checkbox-checked.svg);
+    /*background-position: 0 -17px;*/
+}
+.check-box input[type=checkbox].css-checkbox.sme + label.css-label.sme {
+	padding-left:22px;height:16px;display:inline-block;line-height:16px;background-repeat:no-repeat;background-position: 0 0;font-size:15px;vertical-align:middle;cursor:pointer;
+}
+
+.check-box input[type=checkbox].css-checkbox.sme:checked + label.css-label.sme{
+    background-position: 0 -16px;
+}
+.check-box input[type=checkbox].css-checkbox.lrg + label.css-label.lrg {
+	padding-left:22px;height:20px;display:inline-block;line-height:20px;background-repeat:no-repeat;background-position: 0 0;font-size:15px;vertical-align:middle;cursor:pointer;
+}
+.check-box input[type=checkbox].css-checkbox.lrg:checked + label.css-label.lrg{background-position:0 -20px;}
+/* #EOF CheckBox
+================================================== */
+/* #BOF Button
+================================================== */
+.btn-primary{color:#fff;border-radius:4px;box-shadow:none;outline:0;cursor:pointer;font-weight:700;font-size:20px;border-width:0px;background-color:#869ed6;text-transform:uppercase;}
+.btn-primary:hover{background-color:#3c4c5a;color:#fff;}
+.btn-sm{}
+
+
+/* #EOF Button
+================================================== */

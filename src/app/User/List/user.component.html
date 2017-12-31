@@ -1,0 +1,103 @@
+<div class="box-head-right mt-2">
+  <button class="btn btn-sm btn-blue mt-1 " style="float:right" (click)="showConfirm()" data-toggle="modal">Create User</button>
+</div>
+
+<input type='text'
+       style='padding:8px;margin:15px auto;width:30%;'
+       placeholder='Type to filter the data...' #search
+       (keyup.enter)='updateFilter1(search.value)'
+        />
+<input type="button" value="Search" (click)='updateFilter1(search.value)'>      
+<div>
+  <ngx-datatable class="material table"
+                 [rows]="rows"
+                 [columns]="[{name:'firstName'},{name:'middleName'}]"
+                 [columnMode]="'force'"
+                 [headerHeight]="50"
+                 [footerHeight]="50"
+                 [rowHeight]="'auto'"
+                 [externalPaging]="true"
+                 [count]="page.totalElements"
+                 [offset]="page.pageNumber"
+                 [limit]="page.size"
+                 (page)='setPage($event)'
+                 [externalSorting]="true">
+
+    <ngx-datatable-column [width]="90" [sortable]="true" 
+        prop="firstName" name="{{ 'First Name' }}">
+        <!--<ng-template #searchTpl let-column="column" 
+        let-sort="sortFn" ngx-datatable-header-template>
+            <span class="datatable-header-cell-wrapper">
+              <span class="datatable-header-cell-label draggable"
+              *ngIf="!IsColumnSearch">{{column.name}}               
+              </span>
+              <span class="datatable-header-cell-label draggable" *ngIf="IsColumnSearch">
+                  <input type='text'
+                  style='padding:8px;margin:15px auto;width:50%;'
+                  placeholder='Type to filter the data...' #search2
+                  (keyup.enter)='updateFilter1(search.value)'
+                   />
+                   
+                  <input type="button" value="Search" 
+                  (click)='columnSearch(search2.value,firstName)'>      
+              </span>
+              <span class="datatable-header-cell-label draggable"
+               (click)="Sort($event)" *ngIf="!IsColumnSearch" style="float: right;">
+               <i class="fa fa-search"></i>              
+              </span>
+            </span>
+        </ng-template>-->
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span>
+          {{row['firstName']}}
+        </span>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="90" [sortable]="true" 
+      prop="middleName" name="{{ 'Middle Name' }}">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span>
+          {{row['middleName']}}
+        </span>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="90" [sortable]="true" 
+      prop="lastName" name="{{ 'Last Name' }}">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span>
+          {{row['lastName']}}
+        </span>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="90" [sortable]="true" 
+      prop="emailAddress" name="{{ 'Email Address' }}">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span>
+          {{row['emailAddress']}}
+        </span>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="90" [sortable]="true" 
+      prop="userTypeDesc" name="{{ 'Description' }}">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span>
+          {{row['userTypeDesc']}}
+        </span>
+      </ng-template>
+    </ngx-datatable-column>
+
+
+    <ngx-datatable-column [width]="50" [sortable]="false" name="{{ 'ACTION' }}">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <a title="Edit" id="{{row['userId']}}" class="btn btn-sm" 
+            (click)="userUpdate(row['userId'])">
+          <i class="fa fa-edit"></i>
+        </a> &nbsp;
+        <a title="Delete" class="btn  btn-sm" (click)="userDeleteAlert(row['userId'])">
+          <i class="fa fa-trash-o"></i>
+        </a>
+      </ng-template>
+    </ngx-datatable-column>
+
+  </ngx-datatable>
+</div>
