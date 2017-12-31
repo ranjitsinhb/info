@@ -10,7 +10,6 @@ import { BuildingModel } from '../building.model';
 import { BuildingService } from '../building.service';
 
 
-import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/filter';
@@ -45,14 +44,13 @@ export class CreateBuildingComponent extends DialogComponent<ConfirmModel, boole
     private _slimLoadingBarService: SlimLoadingBarService,
     private _configuration: Configuration,
     dialogService: DialogService,
-    private http: Http,
     private router: Router) {
     super(dialogService);
   }
 
   ngOnInit() {
     this.getPortfolioList();
-    this.getFeatureList();
+    //this.getFeatureList();
 
   }
 
@@ -84,28 +82,25 @@ export class CreateBuildingComponent extends DialogComponent<ConfirmModel, boole
   /**
    * get feature list
    */
-  public getFeatureList() {
+  // public getFeatureList() {
 
-    this._buildingService.getFeatureList('aa')
-    .subscribe(data => this.mydata = data);
-
-    this._buildingService.getFeatureData()
-      .subscribe((data: any[]) => {
-        this.featureList = data;
-        if (this.featureList.data) {
-          this.featureList.data.forEach(fdata => {
-            this.featuresAutoSuggestArray.push({
-              display: fdata.featureName,
-              value: fdata.featureId
-            });
-          });
-        }
-      },
-      error => () => {
-        this._toasterService.pop('error', 'Error', 'Something went wrong...');
-      },
-      () => { });
-  }
+  //   this._buildingService.getFeatureData()
+  //     .subscribe((data: any[]) => {
+  //       this.featureList = data;
+  //       if (this.featureList.data) {
+  //         this.featureList.data.forEach(fdata => {
+  //           this.featuresAutoSuggestArray.push({
+  //             display: fdata.featureName,
+  //             value: fdata.featureId
+  //           });
+  //         });
+  //       }
+  //     },
+  //     error => () => {
+  //       this._toasterService.pop('error', 'Error', 'Something went wrong...');
+  //     },
+  //     () => { });
+  // }
 
 
   /**

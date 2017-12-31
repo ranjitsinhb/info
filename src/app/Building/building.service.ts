@@ -30,27 +30,24 @@ export class BuildingService {
       .map(res => res);
   }
 
-  getFeatureData() {
-    var apiURL = this._configuration.ApiGetBuildingFeatureList.replace(this._configuration.buildingCode, this._configuration.BuildingCode);
-    return this._dataService.get<any>(apiURL)
-      .map(res => res);
-  }
-
-  getFeatureList(text: string) {
-    const url = `https://api.github.com/search/repositories?q=${text}`;
-    return this.http
-      .get(url)
-      .map(res => res.json().items.map(item => item.full_name));
-  }
-
-  // getFeatureList(text: string) {
-  //   //const apiURL = `https://api.github.com/search/repositories?q=${text}`;
-  //   const apiURL = this._configuration.ApiGetBuildingFeatureList.replace(this._configuration.buildingCode, this._configuration.BuildingCode);
-
-  //   return this._dataService
-  //     .get<any>(apiURL)
-  //     .map(res => res.json());
+  // getFeatureData() {
+  //   var apiURL = this._configuration.ApiGetBuildingFeatureList.replace(this._configuration.buildingCode, this._configuration.BuildingCode);
+  //   return this._dataService.get<any>(apiURL)
+  //     .map(res => res);
   // }
-
+  
+  getFeatureList(text: string) {
+    const apiURL = this._configuration.ApiGetBuildingFeatureList.replace(this._configuration.buildingCode, this._configuration.BuildingCode);
+    return this._dataService
+    .get<any>(apiURL)
+    .map(res => res.data.map(item => item.featureName));
+  }
+  
+  // getFeatureList(text: string) {
+  //   const url = `https://api.github.com/search/repositories?q=${text}`;
+  //   return this.http
+  //     .get(url)
+  //     .map(res => res.json().items.map(item => item.full_name));
+  // }
 
 }
